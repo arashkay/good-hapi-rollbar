@@ -41,7 +41,7 @@
       rollbar.init(this._settings.accessToken, this._settings.rollbar);
       this._streams.squeeze.on('data', (function(_this) {
         return function(data) {
-          var error, request, url;
+          var error, message, ref, ref1, request, url;
           error = null;
           _.each(data.log, function(log) {
             if (_.includes(log.tags, 'error')) {
@@ -67,7 +67,12 @@
                 path: data.path
               }
             };
-            return rollbar.handleError(error.data, request);
+            message = (ref = error.data.data) != null ? ref : error.data;
+            if ((ref1 = message.output.statusCode) === 404) {
+              return rollbar.reportMessage(message.message, 'warning', request);
+            } else {
+              return rollbar.handleError(message, request);
+            }
           }
         };
       })(this));

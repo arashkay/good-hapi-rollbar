@@ -43,7 +43,11 @@ class GoodRollbar
           protocol: url[0]
           route:
             path: data.path
-        rollbar.handleError(error.data, request)
+        message = error.data.data ? error.data
+        if message.output.statusCode in [404]
+          rollbar.reportMessage message.message, 'warning', request
+        else
+          rollbar.handleError message, request
 
     stream.pipe(@_streams.squeeze)
 
