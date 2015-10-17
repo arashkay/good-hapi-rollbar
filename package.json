@@ -1,6 +1,6 @@
 {
   "name": "good-hapi-rollbar",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Good Rollbar reporter for Hapi.js",
   "main": "build/main",
   "scripts": {

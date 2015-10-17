@@ -22,7 +22,6 @@ class GoodRollbar
       stringify: SafeJson(null, { separator: '\n' })
 
   init: (stream, emitter, callback) ->
-    console.log '######## INIT GOOD ROLLBAR'
     rollbar.handleUncaughtExceptions @_settings.accessToken, { exitOnUncaughtException: @_settings.exitOnUncaughtException }
 
     rollbar.init @_settings.accessToken, @_settings.rollbar
@@ -54,5 +53,4 @@ module.exports.attributes =
   pkg: require('../package.json')
 
 module.exports = (events, config={}) ->
-  console.log '######## NEW GOOD ROLLBAR'
   new GoodRollbar events, config

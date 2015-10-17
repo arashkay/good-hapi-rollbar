@@ -35,7 +35,6 @@
     }
 
     GoodRollbar.prototype.init = function(stream, emitter, callback) {
-      console.log('######## INIT GOOD ROLLBAR');
       rollbar.handleUncaughtExceptions(this._settings.accessToken, {
         exitOnUncaughtException: this._settings.exitOnUncaughtException
       });
@@ -88,7 +87,6 @@
     if (config == null) {
       config = {};
     }
-    console.log('######## NEW GOOD ROLLBAR');
     return new GoodRollbar(events, config);
   };
 
